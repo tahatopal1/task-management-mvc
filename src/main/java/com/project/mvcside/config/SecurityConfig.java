@@ -1,23 +1,28 @@
 package com.project.mvcside.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // add users for in memory authentication
-        User.UserBuilder user = User.withDefaultPasswordEncoder();
-        auth.inMemoryAuthentication()
-                .withUser(user.username("John").password("123").roles("EMPLOYEE"))
-                .withUser(user.username("Mary").password("123").roles("MANAGER"))
-                .withUser(user.username("Susan").password("123").roles("ADMIN"));
+        auth.jdbcAuthentication().dataSource(dataSource);
     }
 
     @Override
@@ -30,5 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/loginPage")
                 .loginProcessingUrl("/authenticateTheUser")
                 .permitAll();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 }
