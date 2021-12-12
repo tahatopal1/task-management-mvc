@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,11 @@
 </head>
 <body>
     <h3>Task Form Page</h3>
-    <form:form action="/leaders/create-task/place?username=${session_username}" modelAttribute="taskWsDto">
+    <c:url var="createLink" value="/leaders/create-task/place">
+        <c:param name="username" value="${session_username}"/>
+    </c:url>
+
+    <form:form action="${createLink}" modelAttribute="taskWsDto">
         <p><form:input path="title" /></p>
         <p><input type="submit"/></p>
     </form:form>
