@@ -20,7 +20,7 @@ public class MainController {
 
 	@GetMapping("/leaders")
 	public String showLeaders(Model model) {
-		model.addAttribute("tasks", taskService.findAll());
+		model.addAttribute("taskWsDtos", taskService.findAll());
 		return "leaders";
 	}
 
