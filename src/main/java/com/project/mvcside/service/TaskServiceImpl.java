@@ -1,6 +1,6 @@
 package com.project.mvcside.service;
 
-import com.project.mvcside.model.Task;
+import com.project.mvcside.model.TaskWsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -20,11 +20,16 @@ public class TaskServiceImpl implements TaskService {
     private String restUrl;
 
     @Override
-    public List<Task> findAll() {
+    public List<TaskWsDto> findAll() {
         return restTemplate.exchange(restUrl,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Task>>() {})
+                new ParameterizedTypeReference<List<TaskWsDto>>() {})
                 .getBody();
+    }
+
+    @Override
+    public void createTask(TaskWsDto taskWsDto, String username) {
+        restTemplate.postForEntity(restUrl.concat("?username=").concat(username), taskWsDto, String.class);
     }
 }

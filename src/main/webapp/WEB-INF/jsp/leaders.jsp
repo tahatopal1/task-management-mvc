@@ -11,9 +11,10 @@
 	<h2>LEADERS Home Page</h2>
 	<p>See you in vacation...Secret info</p>
 	<hr>
-	<c:forEach var="task" items="${tasks}">
-		<p>${task.id} / ${task.title}</p>
+	<c:forEach var="taskWsDto" items="${taskWsDtos}">
+		<p>${taskWsDto.id} / ${taskWsDto.title}</p>
 	</c:forEach>
+	<a href="${pageContext.request.contextPath}/leaders/create-task">Create Task</a>
 	<a href="${pageContext.request.contextPath}/">Back to Home Page</a>
 </body>
 </html>

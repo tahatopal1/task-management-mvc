@@ -1,15 +1,11 @@
 package com.project.mvcside.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.*;
-
-
-public class Task {
+public class TaskWsDto {
 
     private int id;
     private String title;
-    private User user;
+    private UserWsDto userWsDto;
 
     public int getId() {
         return id;
@@ -27,11 +23,11 @@ public class Task {
         this.title = title;
     }
 
-    public User getUser() {
-        return user;
+    public UserWsDto getUser() {
+        return userWsDto;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserWsDto userWsDto) {
+        this.userWsDto = userWsDto;
     }
 }
