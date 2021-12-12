@@ -1,7 +1,7 @@
 package com.project.mvcside.service;
 
-import com.project.mvcside.model.Task;
-import com.project.mvcside.model.User;
+import com.project.mvcside.model.TaskWsDto;
+import com.project.mvcside.model.UserWsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -21,14 +21,14 @@ public class CustomerServiceImpl implements CustomerService{
     private String restUrl;
 
     @Override
-    public List<User> findAll() {
+    public List<UserWsDto> findAll() {
         return restTemplate
-                .exchange(restUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {})
+                .exchange(restUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<UserWsDto>>() {})
                 .getBody();
     }
 
     @Override
-    public void addTaskToUser(String username, Task task) {
+    public void addTaskToCustomer(String username, TaskWsDto taskWsDto) {
 
     }
 }

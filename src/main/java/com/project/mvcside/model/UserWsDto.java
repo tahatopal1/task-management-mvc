@@ -2,12 +2,12 @@ package com.project.mvcside.model;
 
 import java.util.List;
 
-public class User {
+public class UserWsDto {
 
     private String username;
     private String password;
     private Integer enabled;
-    private List<Task> tasks;
+    private List<TaskWsDto> taskWsDtos;
 
     public String getUsername() {
         return username;
@@ -33,11 +33,11 @@ public class User {
         this.enabled = enabled;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<TaskWsDto> getTasks() {
+        return taskWsDtos;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasks(List<TaskWsDto> taskWsDtos) {
+        this.taskWsDtos = taskWsDtos;
     }
 }
