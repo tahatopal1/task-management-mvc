@@ -41,4 +41,10 @@ public class MainController {
 		return "redirect:/leaders";
 	}
 
+	@RequestMapping("/leaders/update-task")
+	public String updateTask(Model model, @RequestParam Integer task_id){
+		model.addAttribute("task", taskService.find(task_id));
+		return "update-task";
+	}
+
 }
