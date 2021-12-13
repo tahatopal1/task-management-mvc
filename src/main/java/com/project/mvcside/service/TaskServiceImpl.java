@@ -41,4 +41,9 @@ public class TaskServiceImpl implements TaskService {
         params.put("id", id);
         return restTemplate.getForObject(restUrl.concat("/{id}/"), TaskWsDto.class, params);
     }
+
+    @Override
+    public void update(TaskWsDto taskWsDto) {
+        restTemplate.put(restUrl, taskWsDto);
+    }
 }

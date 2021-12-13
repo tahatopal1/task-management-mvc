@@ -56,4 +56,10 @@ public class MainController {
 		return "update-task";
 	}
 
+	@RequestMapping("/leaders/update-task/place")
+	public String placeUpdatedTask(@ModelAttribute TaskWsDto taskWsDto){
+		taskService.update(taskWsDto);
+		return "redirect:/leaders";
+	}
+
 }
