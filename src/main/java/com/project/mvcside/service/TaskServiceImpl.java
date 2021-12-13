@@ -8,7 +8,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -31,5 +33,12 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void createTask(TaskWsDto taskWsDto, String username) {
         restTemplate.postForEntity(restUrl.concat("?username=").concat(username), taskWsDto, String.class);
+    }
+
+    @Override
+    public TaskWsDto find(Integer id) {
+        Map<String, Integer> params = new HashMap<String, Integer>();
+        params.put("id", id);
+        return restTemplate.getForObject(restUrl.concat("/{id}/"), TaskWsDto.class, params);
     }
 }

@@ -12,10 +12,14 @@
 	<p>See you in vacation...Secret info</p>
 	<hr>
 	<c:forEach var="taskWsDto" items="${taskWsDtos}">
+		<c:url var="updateLink" value="/leaders/update-task">
+			<c:param name="task_id" value="${taskWsDto.id}"/>
+		</c:url>
 		<p>${taskWsDto.id} / ${taskWsDto.title} /
 			<c:if test="${taskWsDto.userWsDto  != null}">
 				${taskWsDto.userWsDto.username}
 			</c:if>
+			<a href="${updateLink}">Update Task</a>
 		</p>
 	</c:forEach>
 	<a href="${pageContext.request.contextPath}/leaders/create-task">Create Task</a>

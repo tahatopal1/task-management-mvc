@@ -10,4 +10,6 @@ public interface TaskService {
 
     void createTask(TaskWsDto taskWsDto, String username);
 
+    TaskWsDto find(Integer id);
+
 }
