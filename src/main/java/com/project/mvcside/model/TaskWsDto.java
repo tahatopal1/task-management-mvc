@@ -23,11 +23,11 @@ public class TaskWsDto {
         this.title = title;
     }
 
-    public UserWsDto getUser() {
+    public UserWsDto getUserWsDto() {
         return userWsDto;
     }
 
-    public void setUser(UserWsDto userWsDto) {
+    public void setUserWsDto(UserWsDto userWsDto) {
         this.userWsDto = userWsDto;
     }
 }

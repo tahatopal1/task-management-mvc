@@ -33,11 +33,11 @@ public class UserWsDto {
         this.enabled = enabled;
     }
 
-    public List<TaskWsDto> getTasks() {
+    public List<TaskWsDto> getTaskWsDtos() {
         return taskWsDtos;
     }
 
-    public void setTasks(List<TaskWsDto> taskWsDtos) {
+    public void setTaskWsDtos(List<TaskWsDto> taskWsDtos) {
         this.taskWsDtos = taskWsDtos;
     }
 }
