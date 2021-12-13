@@ -1,17 +1,24 @@
 package com.project.mvcside.controller;
 
 import com.project.mvcside.model.TaskWsDto;
+import com.project.mvcside.model.UserWsDto;
 import com.project.mvcside.service.TaskService;
+import com.project.mvcside.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
 
 	@Autowired
 	private TaskService taskService;
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/")
 	public String showHome() {
@@ -44,6 +51,8 @@ public class MainController {
 	@RequestMapping("/leaders/update-task")
 	public String updateTask(Model model, @RequestParam Integer task_id){
 		model.addAttribute("task", taskService.find(task_id));
+		model.addAttribute("users",
+				userService.findAll().stream().map(UserWsDto::getUsername).collect(Collectors.toList()));
 		return "update-task";
 	}
 
