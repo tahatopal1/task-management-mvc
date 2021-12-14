@@ -3,6 +3,7 @@ package com.project.mvcside.service;
 import com.project.mvcside.model.TaskWsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskWsDto> findAll() {
-        return restTemplate.exchange(restUrl,
+        RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
+        RestTemplate build = restTemplateBuilder.basicAuthentication("mary", "test123").build();
+        return build.exchange(restUrl,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<TaskWsDto>>() {})

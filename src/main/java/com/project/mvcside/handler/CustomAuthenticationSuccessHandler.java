@@ -17,8 +17,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                                         Authentication authentication) throws IOException, ServletException {
 
         String username = authentication.getName();
+
         HttpSession session = request.getSession();
         session.setAttribute("session_username", username);
+        session.setAttribute("session_password", username);
 
         response.sendRedirect(request.getContextPath() + "/");
 
