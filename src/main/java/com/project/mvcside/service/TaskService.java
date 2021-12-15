@@ -1,12 +1,13 @@
 package com.project.mvcside.service;
 
-import com.project.mvcside.model.TaskWsDto;
+import com.project.mvcside.model.BasicAuth;
+import com.project.mvcside.model.wsdto.TaskWsDto;
 
 import java.util.List;
 
 public interface TaskService {
 
-    List<TaskWsDto> findAll();
+    List<TaskWsDto> findAll(BasicAuth auth);
 
     void createTask(TaskWsDto taskWsDto, String username);
 

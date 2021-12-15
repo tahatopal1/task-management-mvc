@@ -1,7 +1,8 @@
 package com.project.mvcside.controller;
 
-import com.project.mvcside.model.TaskWsDto;
-import com.project.mvcside.model.UserWsDto;
+import com.project.mvcside.model.BasicAuth;
+import com.project.mvcside.model.wsdto.TaskWsDto;
+import com.project.mvcside.model.wsdto.UserWsDto;
 import com.project.mvcside.service.TaskService;
 import com.project.mvcside.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
 
 @Controller
@@ -26,8 +28,10 @@ public class MainController {
 	}
 
 	@GetMapping("/leaders")
-	public String showLeaders(Model model) {
-		model.addAttribute("taskWsDtos", taskService.findAll());
+	public String showLeaders(Model model, HttpServletRequest httpServletRequest) {
+		model.addAttribute("taskWsDtos", taskService
+				.findAll(new BasicAuth(httpServletRequest.getSession().getAttribute("session_username").toString(),
+										httpServletRequest.getSession().getAttribute("session_password").toString())));
 		return "leaders";
 	}
 
