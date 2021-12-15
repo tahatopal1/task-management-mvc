@@ -1,8 +1,8 @@
 package com.project.mvcside.service;
 
-import com.project.mvcside.model.RoleWsDto;
-import com.project.mvcside.model.TaskWsDto;
-import com.project.mvcside.model.UserWsDto;
+import com.project.mvcside.model.wsdto.RoleWsDto;
+import com.project.mvcside.model.wsdto.TaskWsDto;
+import com.project.mvcside.model.wsdto.UserWsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;

@@ -1,4 +1,4 @@
-package com.project.mvcside.model;
+package com.project.mvcside.model.wsdto;
 
 public class RoleWsDto {
 

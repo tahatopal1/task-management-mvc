@@ -21,6 +21,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Object credentials = SecurityContextHolder.getContext().getAuthentication().getCredentials();
         HttpSession session = request.getSession();
         session.setAttribute("session_username", username);
+        session.setAttribute("session_password", credentials.toString());
 
         response.sendRedirect(request.getContextPath() + "/");
 
