@@ -26,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskWsDto> findAll(BasicAuth auth) {
         return new RestTemplateBuilder()
-                .basicAuthentication("mary", "test123")
+                .basicAuthentication(auth.getUsername(), auth.getPassword())
                 .build()
                 .exchange(restUrl, HttpMethod.GET,  null,
                         new ParameterizedTypeReference<List<TaskWsDto>>() {})
