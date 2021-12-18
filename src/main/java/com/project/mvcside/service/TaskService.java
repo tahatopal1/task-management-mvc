@@ -9,7 +9,7 @@ public interface TaskService {
 
     List<TaskWsDto> findAll(BasicAuth auth);
 
-    void createTask(TaskWsDto taskWsDto, String username);
+    void createTask(TaskWsDto taskWsDto, Integer id);
 
     TaskWsDto find(Integer id);
 

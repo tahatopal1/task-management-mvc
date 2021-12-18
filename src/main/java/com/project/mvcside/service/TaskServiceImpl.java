@@ -26,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskWsDto> findAll(BasicAuth auth) {
         return new RestTemplateBuilder()
-                .basicAuthentication("mary", "test123")
+                .basicAuthentication(auth.getUsername(), auth.getPassword())
                 .build()
                 .exchange(restUrl, HttpMethod.GET,  null,
                         new ParameterizedTypeReference<List<TaskWsDto>>() {})
@@ -34,8 +34,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void createTask(TaskWsDto taskWsDto, String username) {
-        restTemplate.postForEntity(restUrl.concat("?username=").concat(username), taskWsDto, String.class);
+    public void createTask(TaskWsDto taskWsDto, Integer id) {
+        restTemplate.postForEntity(restUrl.concat("?id=") + id, taskWsDto, TaskWsDto.class);
     }
 
     @Override
