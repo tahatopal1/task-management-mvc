@@ -23,15 +23,19 @@ public class MainController {
 	private UserService userService;
 
 	@GetMapping("/")
-	public String showHome() {
+	public String showHome(HttpServletRequest request) {
+		request.getSession().setAttribute("user", userService.findByUsername(
+				request.getSession().getAttribute("session_username").toString()
+		));
+		request.getSession().removeAttribute("session_username");
+		request.getSession().removeAttribute("session_password");
 		return "home";
 	}
 
 	@GetMapping("/leaders")
 	public String showLeaders(Model model, HttpServletRequest httpServletRequest) {
-		model.addAttribute("taskWsDtos", taskService
-				.findAll(new BasicAuth(httpServletRequest.getSession().getAttribute("session_username").toString(),
-										httpServletRequest.getSession().getAttribute("session_password").toString())));
+		UserWsDto user = (UserWsDto) httpServletRequest.getSession().getAttribute("user");
+		model.addAttribute("taskWsDtos", taskService.findAll(new BasicAuth(user.getUsername(), user.getPassword())));
 		return "leaders";
 	}
 
@@ -47,8 +51,8 @@ public class MainController {
 	}
 
 	@RequestMapping("/leaders/create-task/place")
-	public String placeTask(@ModelAttribute TaskWsDto taskWsDto, @RequestParam String username){
-		taskService.createTask(taskWsDto, username);
+	public String placeTask(@ModelAttribute TaskWsDto taskWsDto, @RequestParam Integer id){
+		taskService.createTask(taskWsDto, id);
 		return "redirect:/leaders";
 	}
 

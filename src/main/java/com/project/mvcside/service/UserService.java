@@ -10,7 +10,7 @@ public interface UserService extends UserDetailsService {
 
     List<UserWsDto> findAll();
 
-    UserWsDto find();
+    UserWsDto findByUsername(String username);
 
     void addTaskToCustomer(String username, TaskWsDto taskWsDto);
 
