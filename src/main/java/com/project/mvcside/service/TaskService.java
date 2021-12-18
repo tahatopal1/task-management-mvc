@@ -14,4 +14,6 @@ public interface TaskService {
     TaskWsDto find(Integer id);
 
     void update(TaskWsDto taskWsDto);
+
+    void delete(Integer task_id);
 }

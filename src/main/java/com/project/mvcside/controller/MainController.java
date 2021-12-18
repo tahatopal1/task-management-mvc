@@ -73,4 +73,10 @@ public class MainController {
 		return "redirect:/leaders";
 	}
 
+	@RequestMapping("/leaders/delete-task")
+	public String deleteTask(@RequestParam Integer task_id){
+		taskService.delete(task_id);
+		return "redirect:/leaders";
+	}
+
 }

@@ -49,4 +49,11 @@ public class TaskServiceImpl implements TaskService {
     public void update(TaskWsDto taskWsDto) {
         restTemplate.put(restUrl, taskWsDto);
     }
+
+    @Override
+    public void delete(Integer task_id) {
+        Map<String, Integer> params = new HashMap<String, Integer>();
+        params.put("id", task_id);
+        restTemplate.delete(restUrl.concat("/{id}/"), params);
+    }
 }
