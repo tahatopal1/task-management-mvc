@@ -8,6 +8,7 @@ import com.project.mvcside.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +25,13 @@ public class MainController {
 
 	@GetMapping("/")
 	public String showHome(HttpServletRequest request) {
-		request.getSession().setAttribute("user", userService.findByUsername(
-				request.getSession().getAttribute("session_username").toString()
-		));
-		request.getSession().removeAttribute("session_username");
-		request.getSession().removeAttribute("session_password");
+		if (!ObjectUtils.isEmpty(request.getSession().getAttribute("session_username"))){
+			request.getSession().setAttribute("user", userService.findByUsername(
+					request.getSession().getAttribute("session_username").toString()
+			));
+			request.getSession().removeAttribute("session_username");
+			request.getSession().removeAttribute("session_password");
+		}
 		return "home";
 	}
 
