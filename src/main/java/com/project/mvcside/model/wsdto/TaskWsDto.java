@@ -5,6 +5,7 @@ public class TaskWsDto {
 
     private int id;
     private String title;
+    private String definition;
     private UserWsDto userWsDto;
 
     public int getId() {
@@ -21,6 +22,14 @@ public class TaskWsDto {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
     }
 
     public UserWsDto getUserWsDto() {

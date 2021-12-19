@@ -79,4 +79,10 @@ public class MainController {
 		return "redirect:/leaders";
 	}
 
+	@RequestMapping("/leaders/task")
+	public String directToTask(Model model, @RequestParam Integer task_id){
+		model.addAttribute("task", taskService.find(task_id));
+		return "task";
+	}
+
 }

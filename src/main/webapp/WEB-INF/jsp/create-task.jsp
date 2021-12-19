@@ -18,6 +18,7 @@
 
     <form:form action="${createLink}" modelAttribute="taskWsDto">
         <p><form:input path="title" /></p>
+        <p><form:input path="definition" /></p>
         <p><input type="submit"/></p>
     </form:form>
 </body>
