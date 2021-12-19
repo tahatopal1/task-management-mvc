@@ -18,12 +18,16 @@
 		<c:url var="deleteLink" value="/leaders/delete-task">
 			<c:param name="task_id" value="${taskWsDto.id}"/>
 		</c:url>
+		<c:url var="taskLink" value="/leaders/task">
+			<c:param name="task_id" value="${taskWsDto.id}"/>
+		</c:url>
 		<p>${taskWsDto.id} / ${taskWsDto.title} /
 			<c:if test="${taskWsDto.userWsDto  != null}">
 				${taskWsDto.userWsDto.username}
 			</c:if>
 			<a href="${updateLink}">Update Task</a>
 			<a href="${deleteLink}">Delete Task</a>
+			<a href="${taskLink}">Go To Task</a>
 		</p>
 	</c:forEach>
 	<a href="${pageContext.request.contextPath}/leaders/create-task">Create Task</a>

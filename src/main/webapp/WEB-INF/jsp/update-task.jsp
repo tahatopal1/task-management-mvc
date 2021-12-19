@@ -17,6 +17,7 @@
 <form:form action="${updateLink}" modelAttribute="task">
     <p><form:input path="title" /></p>
     <p><form:input path="id" /></p>
+    <p><form:textarea path="definition"/></p>
     <p>${task.userWsDto.username}</p>
     <p><form:select path="userWsDto.username">
         <form:options items="${users}"/>
