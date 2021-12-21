@@ -32,14 +32,14 @@ public class MainController {
 			request.getSession().removeAttribute("session_username");
 			request.getSession().removeAttribute("session_password");
 		}
-		return "home";
+		return "home-new";
 	}
 
 	@GetMapping("/leaders")
 	public String showLeaders(Model model, HttpServletRequest httpServletRequest) {
 		UserWsDto user = (UserWsDto) httpServletRequest.getSession().getAttribute("user");
 		model.addAttribute("taskWsDtos", taskService.findAll(new BasicAuth(user.getUsername(), user.getPassword())));
-		return "leaders";
+		return "leaders-new";
 	}
 
 	@RequestMapping("systems")
@@ -64,7 +64,7 @@ public class MainController {
 		model.addAttribute("task", taskService.find(task_id));
 		model.addAttribute("users",
 				userService.findAll().stream().map(UserWsDto::getUsername).collect(Collectors.toList()));
-		return "update-task";
+		return "update-task-new";
 	}
 
 	@RequestMapping("/leaders/update-task/place")
