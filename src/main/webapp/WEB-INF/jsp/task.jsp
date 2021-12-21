@@ -12,7 +12,14 @@
 <p>See you in vacation...Secret info</p>
 <hr>
 <p>${task.title}</p>
-<a href="${pageContext.request.contextPath}/leaders/create-task">Create Task</a>
-<a href="${pageContext.request.contextPath}/">Back to Home Page</a>
+<c:forEach var="entry" items="${task.entryWsDtos}">
+    <hr>
+    <p>${entry.id}</p>
+    <p>${entry.comment}</p>
+    <hr>
+</c:forEach>
+<p><a href="${pageContext.request.contextPath}/">Entry</a></p>
+<p><a href="${pageContext.request.contextPath}/">Back to Home Page</a></p>
+
 </body>
 </html>
